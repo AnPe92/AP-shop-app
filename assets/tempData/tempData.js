@@ -4,7 +4,7 @@ const data =
             name: "Gurka",
             amount: 22,
             price: 13,
-            inCart: false
+            inCart: true
         },
         {
             name: "Gurka2",
