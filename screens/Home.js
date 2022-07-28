@@ -22,6 +22,7 @@ const Home = () => {
 
     return (
         <View>
+            <Text>as</Text>
             <AddItemToList />
             <FlatList
                 data={items}
