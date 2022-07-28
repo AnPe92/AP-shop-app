@@ -1,7 +1,14 @@
 import { useState } from "react";
-import { View, Text, StyleSheet } from "react-native"
-import Swipeable from 'react-native-gesture-handler/Swipeable';
-import AddedToCart from "./AddedToCart";
+import React from 'react';
+import {
+    SafeAreaView,
+    StyleSheet,
+    View,
+    Text,
+    StatusBar,
+    FlatList,
+} from 'react-native';
+import { Swipeable, GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
 
@@ -12,41 +19,90 @@ const DisplayItems = ({ item }) => {
     const [cartItem, setCartItem] = useState(item);
 
 
-    const renderRightActions = (progress, dragX) => {
-        const trans = dragX.interpolate({
-            inputRange: [0, 50, 100, 101],
-            outputRange: [-20, 0, 0, 1],
-        });
+    const Separator = () => <View style={styles.itemSeparator} />;
+    const LeftSwipeActions = () => {
         return (
-            <AddedToCart item={cartItem} />
+            <View
+                style={{ flex: 1, backgroundColor: '#ccffbd', justifyContent: 'center' }}
+            >
+                <Text
+                    style={{
+                        color: '#40394a',
+                        paddingHorizontal: 10,
+                        fontWeight: '600',
+                        paddingHorizontal: 30,
+                        paddingVertical: 20,
+                    }}
+                >
+                    Bookmark
+                </Text>
+            </View>
         );
+    };
+    const rightSwipeActions = () => {
+        return (
+            <View
+                style={{
+                    backgroundColor: '#ff8303',
+                    justifyContent: 'center',
+                    alignItems: 'flex-end',
+                }}
+            >
+                <Text
+                    style={{
+                        color: '#1b1a17',
+                        paddingHorizontal: 10,
+                        fontWeight: '600',
+                        paddingHorizontal: 30,
+                        paddingVertical: 20,
+                    }}
+                >
+                    Delete
+                </Text>
+            </View>
+        );
+    };
+    const swipeFromLeftOpen = () => {
+        alert('Swipe from left');
+    };
+    const swipeFromRightOpen = () => {
+        alert('Swipe from right');
     };
 
     return (
-        <View style={styles.container}>
-            <Text>aba</Text>
+        <GestureHandlerRootView>
             <Swipeable
-                renderRightActions={renderRightActions}
-            >
-                <Text
-                    style={styles.swipeStyle}
-                >asd</Text>
-            </Swipeable>
+                renderLeftActions={LeftSwipeActions}
+                renderRightActions={rightSwipeActions}
+                onSwipeableRightOpen={swipeFromRightOpen}
+                onSwipeableLeftOpen={swipeFromLeftOpen}
 
-        </View>
+            >
+                <View
+                    style={{
+                        paddingHorizontal: 30,
+                        paddingVertical: 20,
+                        backgroundColor: 'white',
+                    }}
+                >
+                    <Text style={{ fontSize: 24 }}>
+                        a -------------- a
+                    </Text>
+                </View>
+            </Swipeable>
+        </GestureHandlerRootView>
+
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100vw",
-        backgroundColor: "blue"
+
     },
     swipeStyle: {
-        width: "100vw",
-        backgroundColor: "yellow"
+        width: "100%",
+        backgroundColor: "green",
+        height: 250
     }
 })
 

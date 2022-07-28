@@ -24,8 +24,7 @@ export default function addItemToList({ item }) {
                     onChangeText={setTextChange}
                     value={textChange}
                     placeholder="Produkt namn"
-                    autoFocus={true}
-                    autoCapitalize={'words'}
+
                 />
                 <TextInput
                     onChangeText={setNumberChange}
@@ -44,16 +43,10 @@ export default function addItemToList({ item }) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: 'green',
-        alignSelf: 'flex-end',
-        alignItems: 'center',
-        margin: 5,
-        padding: '5px',
-        justifyContent: "space-evenly"
+
 
     },
     text: {
-        fontSize: 80
+
     }
 });
