@@ -12,7 +12,10 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-
+  useEffect(() => {
+    initDb()
+      .then(res => console.log(res, " res from initDB"))
+  })
 
 
   return (
